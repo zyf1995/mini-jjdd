@@ -1,0 +1,45 @@
+<!--pages/immediatelyService/immediatelyService.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view class="flex_row_left padding1 bg_white margin1rem">
+  <image class="immediatelyIcon marginR1" src="../../image/doorShop/immediatelyIcon1.png" alt=""></image>
+  <view class="fontSize14">{{serverOrder.goods.p_name}}</view>
+  <view class="fontSize11 color_9b9 flex_grow1 text_right">￥{{serverOrder.goods.price}}</view>
+</view>
+<view class="flex_row_left padding1 bg_white margin1rem" bindtap="selectTechnician">
+  <image class="immediatelyIcon marginR1" src="../../image/doorShop/immediatelyIcon2.png" alt=""></image>
+  <!-- <picker class="width100" mode="selector" bindchange="bindRegionChange" value="{{technician_name}}" range="{{technicianList}}" range-key="display">
+      <view class="picker flex_row_between width100">
+        <view class="">
+          {{technician_name?technician_name:'请您选择技师'}}
+        </view>
+        <view class="color_9b9">
+          {{technician_position}}
+        </view>
+      </view>
+  </picker> -->
+  <view class="text_right fontSize14">{{technician_name || '请您选择技师'}}</view>
+  <view class="flex_grow1 text_right fontSize14">{{technician_position || ''}}</view>
+</view>
+<view class="flex_row_left padding1 bg_white margin1rem">
+  <image class="immediatelyIcon marginR1" src="../../image/doorShop/immediatelyIcon3.png" alt=""></image>
+  <view class="fontSize14">预约时间</view>
+  <view class="fontSize11 color_9b9 flex_grow1 text_right">已选择{{day}}</view>
+</view>
+<view class="day padding1rem flex_row_left marginT1 marginB1 fontSize12">
+  <view class="flex_col_center {{item.day == day?'color_ffa':''}}" wx:for="{{selectDateList}}" wx:key="index" data-item="{{item}}" bindtap="selectDate">
+    <view class="marginB5">{{item.week}}</view>
+    <view>{{item.day}}</view>
+  </view>
+</view>
+<view class="time bg_white flex flex_wrap text_center paddingT1 paddingB1">
+  <view class="marginT1 marginB1 {{item == time?'color_ffa':''}}" wx:for="{{selectTimeList}}" wx:key="index" data-item="{{item}}" bindtap="selectTime">{{item}}</view>
+</view>
+<view class="width92 bg_white text_center fontSize11 color_9a9">
+  <view>*注：请在门店营业时间内预约服务时间</view>
+</view>
+<view class="footer flex_row_left fontSize14 posi_relative">
+  <view class="marginL2 marginR5">预约时间：</view>
+  <view class="color_ffb">{{day}}  {{time || ''}}</view>
+  <text bindtap="nextStep">下一步</text>
+</view>

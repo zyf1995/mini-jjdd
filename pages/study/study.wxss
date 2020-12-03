@@ -1,0 +1,167 @@
+/* pages/study/study.wxss */
+@import "../../iconfont.wxss";
+page{
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+#header input{
+  width: 94%;
+  height: 64rpx;
+  background:rgba(238,238,238,1);
+  border-radius:32rpx;
+  border: none;
+  outline: none;
+  margin: 0 3%;
+  text-indent: 68rpx;
+  background-image:url('https://testhdt.teadrf.cn/wxbackground/search_icon.png');
+  background-repeat: no-repeat;
+  background-size: 32rpx 32rpx;
+  background-position: 24rpx center;
+}
+#banner{
+  width: 100%;
+  /*margin: 0 3%;*/
+  height: 302rpx;
+}
+#banner image{
+  width: 94%;
+  margin: 0 3%;
+  height: 100%;
+  border-radius:20rpx;
+}
+.menu .menuList .li{
+  width: 25%;
+  padding: 20rpx 0 0;
+}
+.menu .menuList .li view{
+  width: 140rpx;
+  height: 56rpx;
+  color:rgba(0,0,0,1);
+  line-height: 56rpx;
+  text-align: center;
+  background-color:rgba(241,246,249,1);
+  border-radius:30rpx;
+}
+.rankList{
+  margin: 0 20rpx;
+  margin-top: 44rpx;
+}
+.rankList .top{
+  height: 84rpx;
+}
+.rankList .top view{
+  line-height: 84rpx;
+  font-weight:bold;
+  float: left;
+}
+.rankList .bottom{
+  clear: both;
+}
+.rankList .bottom .li{
+  height: 192rpx;
+  padding-left: 104rpx;
+}
+.rankList .bottom .li:first-child{
+  margin-top: 40rpx;
+  background-image: url(https://testhdt.teadrf.cn/wxbackground/paihangbang1.png);
+  background-size: 94rpx 130rpx;
+  background-position: 3.6rpx 24rpx;
+  background-repeat: no-repeat;
+}
+.rankList .bottom .li:nth-child(2){
+  margin-top: 40rpx;
+  background-image: url(https://testhdt.teadrf.cn/wxbackground/paihangbang2.png);
+  background-size: 80rpx 94rpx;
+  background-position: 12rpx 56rpx;
+  background-repeat: no-repeat;
+}
+.rankList .bottom .li:nth-child(3){
+  margin-top: 40rpx;
+  background-image: url(https://testhdt.teadrf.cn/wxbackground/paihangbang3.png);
+  background-size: 62rpx 94rpx;
+  background-position: 18rpx 56rpx;
+  background-repeat: no-repeat;
+}
+.rankList .bottom .li .studyimg{
+  width: 268rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+  float: left;
+  margin-right: 32rpx;
+}
+.rankList .bottom .li .cont .cont1{
+  padding-top: 12rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color:rgba(0,0,0,1);
+}
+.rankList .bottom .li .cont .cont2{
+  height: 52rpx;
+  line-height: 52rpx;
+  color:rgba(125,143,151,1);
+  font-size: 24rpx;
+}
+
+.goodLesson{
+  margin-top: 28rpx;
+}
+.goodLesson .top{
+  height: 84rpx;
+  margin: 0 20rpx;
+}
+.goodLesson .top view{
+  line-height: 84rpx;
+  font-weight:bold;
+  float: left;
+}
+.goodLesson .bottom .goodLessonList{
+  display: flex;
+}
+.goodLesson .bottom .goodLessonList .li{
+  width: 50%;
+}
+.goodLesson .bottom .goodLessonList .li>view{
+  width: 98%;
+  margin-left: 1%;
+}
+.goodLesson .bottom .goodLessonList .li .studyimg{
+  width: 100%;
+  height: 190rpx;
+  border-radius: 10rpx;
+}
+.goodLesson .bottom .goodLessonList .li .cont1{
+  font-size: 28rpx;
+  font-weight: bold;
+  color:rgba(0,0,0,1);
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-top: 8rpx;
+}
+.goodLesson .bottom .goodLessonList .li .cont2{
+  font-size:24rpx;
+  color:rgba(125,143,151,1);
+  width: 90%;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-bottom: 8rpx;
+}
+.goodLesson .bottom .goodLessonList .li .vip .vipImg{
+  display: block;
+  width: 74rpx;
+  height: 26rpx;
+  margin-right: 19rpx;
+}
+.goodLesson .bottom .goodLessonList .li .vip .price1{
+  font-size: 24rpx;
+  font-weight: bold;
+  color:rgba(255,61,0,1);
+  margin-right: 15rpx;
+}
+.goodLesson .bottom .goodLessonList .li .vip .price2{
+  position: relative;
+  font-size: 24rpx;
+  color:rgba(125,143,151,1);
+}

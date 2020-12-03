@@ -1,0 +1,323 @@
+<!--pages/dsDetail/dsDetail.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="top">
+  <view class="inner">
+    <view id="header_wrapper_50">
+      <view id="header" class="header flex_row_between">
+        <view class="color_white fontSize20 fontBold marginL2 text-overflow_1">{{ds_detail.name}}</view>
+        <view class="flex_row_left marginR2" bindtap="shareApp">
+          <!-- <text class="fontSize14 marginR5 color_white">分享</text> -->
+          <image class="search_icon" src="../../image/share_ds_icon.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="">
+      <view class="detail flex_row_left padding1">
+        <view class="fontSize12 color_white marginR5" wx:if="{{ds_detail.type == 10}}">加盟</view>
+        <view class="fontSize12 color_white marginR5" wx:else>联盟</view>
+        <view class="star flex_row_left marginR1">
+          <image src="../../image/doorShop/ds_detailStar_icon.png" alt=""></image>
+          <image src="../../image/doorShop/ds_detailStar_icon.png" alt=""></image>
+          <image src="../../image/doorShop/ds_detailStar_icon.png" alt=""></image>
+          <image src="../../image/doorShop/ds_detailStar_icon.png" alt=""></image>
+          <image src="../../image/doorShop/ds_detailStar_icon.png" alt=""></image>
+        </view>
+        <view class="fontSize12 color_white">5分</view>
+        <view class="search">
+          <input class="fontSize14" disabled="disabled" bindtap="goSearch" placeholder="搜索该门店产品"></input>
+        </view>
+      </view>
+      <view class="imgList">
+        <swiper
+        id="banner"
+        indicator-dots="true"
+        autoplay="true"
+        interval="5000"
+        circular="true"
+        indicator-color="#fff"
+        indicator-active-color="#666874"
+        class="paddingT5 paddingB1"
+        >
+          <swiper-item wx:for="{{ds_detail.images}}" wx:key="index">
+            <image class="headset" src="{{item}}" />
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="bottom">
+  <view class="flex paddingT3L1 bg_white bottomItem2">
+    <view class="left">
+      <image class="ds_detailIcon" src="../../image/doorShop/map_gray_icon.png" alt=""></image>
+    </view>
+    <view class="right marginR1 BB1 flex_row_between">
+      <view class="adress">
+        <view class="marginB1 fontSize14">{{ds_detail.address}}</view>
+        <view class="fontSize11 marginB1 fontSize12">距离<text class="color_ffb">{{filter.toFix(filter.toNum(ds_detail.distance))}}</text>km</view>
+      </view>
+      <view class="icon flex_row_left">
+        <image bindtap="navigation" bindtap="navigation" src="../../image/doorShop/ds_navigation_icon.png" alt=""></image>
+        <view class="marginL1 marginR1">|</view>
+        <image bindtap="call" bindtap="call" src="../../image/doorShop/ds_detailPhone_icon.png" alt=""></image>
+      </view>
+    </view>
+  </view>
+  <view class="flex padding1 bg_white bottomItem3">
+    <view class="left">
+      <image class="ds_detailIcon" src="../../image/doorShop/ds_detailjs_icon.png" alt=""></image>
+    </view>
+    <view class="right">
+      <view class="marginB1 fontSize14 flex_row_between">
+        门店技师
+      </view>
+      <view class="" wx:if="{{technicianList}}">
+        <view class="marginB1 fontSize11 flex_row_left">
+          <!-- <view class="flex_row_left jishiList marginR1" wx:for="{{technicianList.list}}" wx:key="index">
+            <image class="marginR1" src="{{item.avatar?item.avatar:'../../image/avatar_default.png'}}" alt=""></image>
+            <view class="right">
+              <view class="fontSize14 fontBold marginB5">{{item.name}}</view>
+              <view class="technician fontSize10">{{item.position}}</view>
+            </view>
+          </view> -->
+          <scroll-view scroll-x="true" style="width: 100%;white-space: nowrap;">
+            <view class="jishiList marginR1 posi_relative" style="width:35%;display:inline-block;" wx:for="{{technicianList.list}}" wx:key='index'>
+              <image class="marginR1" src="{{item.avatar?item.avatar:'../../image/avatar_default.png'}}" alt=""></image>
+              <view class="right">
+                <view class="fontSize14 fontBold marginB5">{{item.name}}</view>
+                <view class="technician fontSize10">{{item.position}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="gs_tabs flex_row_left bg_white posi_relative">
+    <view class="gs_t_item flex_row_center" data-item="{{item}}" data-index="{{index}}" wx:key="index" wx:for="{{tabArray}}" bindtap='tabS'>
+        <text class="{{dataType == item.dataType?'color_ffb':''}}">{{item.title}}</text>
+    </view>
+</view>
+<view class="pro-container posi_relative" style="height:{{leftMenuH}}rpx;" wx:if="{{dataType == 1}}">
+ <scroll-view class="left-menu" scroll-y scroll-with-animation="true" scroll-top="{{leftMenuTop}}">
+  <view class="menu-item {{index===currentActiveIndex?'menu-active':''}}" wx:for="{{tabArraySub}}" wx:key="index" id="{{index}}" catchtap='changeMenu' >{{item.category}}</view>
+ </scroll-view>
+ <scroll-view class="right-pro" bindscroll = "scroll" scroll-y scroll-with-animation="true" scroll-top="{{rightProTop}}">
+  <view class="pro-item" wx:for="{{dsProductList}}" wx:key="index">
+    <view class="top2">
+      <view class="hotShop padding1 fontSize14 fontBold width100">{{item.category.name}}</view>
+    </view> 
+    <view wx:for="{{item.onSale}}" wx:for-item="lit" wx:for-index="i" wx:key="i" class="flex_row_left posi_relative cont marginR1" bindtap="getshopDetail" data-item="{{lit}}"> 
+      <view class="left2 flex_row_center paddingT1 paddingB1">
+          <image class="productImg" src="{{lit.cover}}" alt=""></image>
+        </view>
+        <view class="right2">
+          <view class="fontSize14 fontBold marginB5 text-overflow_1">{{lit.name}}</view>
+          <view class="fontSize12 color_gray marginB5">
+          </view>
+          <view class="fontSize14">
+            <text class="color_red">￥{{lit.price}}</text>
+            <text class="color_gray text_through">￥{{lit.origin_price}}</text>
+          </view>
+        </view>
+        <view class="add" catchtap="addShop" data-item="{{lit}}">
+          <image class="addIcon" src="../../image/doorShop/managementType_icon3.png" alt=""></image>
+        </view>
+    </view>
+    <!-- 售罄 -->
+    <view class="top2 padding1 flex_row_between">
+      <view class="fontSize14 fontBold">已售罄</view>
+      <view class="fontSize12 flex_row_left">
+        <view>含{{item.saleOut.length}}个产品</view>
+        <view wx:if="{{item.saleOut.length > 0}}">
+          <!-- <image class="downIcon marginL5" v-show="isShow1" src="../../image/doorShop/up_icon.png" alt=""></image> -->
+          <image class="downIcon marginL5" src="../../image/doorShop/down_icon.png" alt=""></image>
+        </view>
+      </view>
+    </view>
+    <view class="flex_row_left posi_relative cont marginR1" wx:for="{{item.saleOut}}" wx:for-item="lit" wx:for-index="i" wx:key="index" style="opacity:0.3;">
+      <view class="left2 padding1 posi_relative flex_row_center">
+        <image class="productImg" src="{{lit.cover}}" alt=""></image>
+        <image class="noSaleImg" src="../../image/doorShop/nosale_icon.png" alt=""></image>
+      </view>
+      <view class="right2">
+        <view class="fontSize14 fontBold marginB5 text-overflow_1">{{lit.name}}</view>
+        <view class="fontSize12 color_gray marginB5">
+        </view>
+        <view class="fontSize14">
+          <text class="color_red">￥{{lit.price}}</text>
+          <text class="color_gray text_through">￥{{lit.origin_price}}</text>
+        </view>
+      </view>
+      <view class="add">
+        <image class="addIcon" src="../../image/doorShop/managementType_icon3.png" alt=""></image>
+      </view>
+    </view>
+  </view>
+ </scroll-view>
+</view>
+<view class="shopCart flex_row_left" bindtap="cartDetail" wx:if="{{dataType == 1}}">
+  <view class="left posi_relative">
+    <image src="../../image/doorShop/shopCart_icon.png" alt=""></image>
+  </view>
+  <view class="center color_white fontSize16 fontBold marginL1" wx:if="{{isSelected}}">
+    已选{{dsStoreCart.count}}件
+  </view>
+  <view class="center color_white fontSize14 fontBold marginL1" wx:else>
+    还未选择任何商品
+  </view>
+  <view class="right fonSize14 color_white">
+    共计：<text class="fontSize18 fontBold" wx:if="{{dsStoreCart}}">￥{{dsStoreCart.total_price}}</text>
+    <text class="fontSize18 fontBold" wx:else>￥0</text>
+  </view>
+</view>
+<view class="bg_white" wx:if="{{dataType == 2}}" style="height:{{leftMenuH}}rpx;">
+  <!-- <view class="gs_tabs gs_tabs1 flex_row_left posi_relative">
+    <view class="gs_t_item gs_t_swiper flex_row_center" data-item="{{item}}" data-index="{{index}}" wx:key="index" wx:for="{{subTabArray}}" bindtap='typeS'>
+        <text class="{{type == item.id?'color_ffb':''}}">{{item.name}}</text>
+    </view>
+  </view> -->
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+     <view class="gs_tabs gs_tabs1 flex_row_left posi_relative">
+        <view class="gs_t_item gs_t_swiper flex_row_center" data-item="{{item}}" data-index="{{index}}" wx:key="index" wx:for="{{subTabArray}}" bindtap='typeS'>
+            <text class="{{type == item.id?'color_ffb':''}}">{{item.name}}</text>
+        </view>
+      </view>
+  </scroll-view>
+  <view class="flex_row_left padding1 posi_relative" wx:for="{{server_list}}" wx:key="index" bindtap="reserveProduct" data-item="{{item}}">
+    <view class="left1 flex_row_center">
+      <image src="{{item.cover}}" alt=""></image>
+    </view>
+    <view class="right1">
+      <view class="fontSize14 marginB5">{{item.name}}</view>
+      <view class="text-overflow_1 fontSize11 marginB5 color_8a8">{{item.introduction}}</view>
+      <view class="fontSize14 color_red">￥{{item.price}}</view>
+    </view>
+    <view class="more color_white">更多<text class="iconfont icon-arrow-right"></text></view>
+  </view>
+  <view class="marginT15 paddingB15 flex_row_center text_gray">
+      <text class="fontSize14">已经到底了哦</text>
+  </view>
+</view>
+<image wx:if="{{dataType == 2}}" class="user_order_list" bindtap="goOrderList" src="../../image/doorShop/user_order_list.png" alt=""></image>
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body cart_box bottom-pos" animation="{{animationData}}">
+      <view class="flex_row_left">
+        <image class="shopImg margin1rem paddingT1" src="{{goodsInfo.cover}}" alt=""></image>
+        <view class="right">
+          <view class="fontSize12 color_ff6 marginB5">￥<text class="fontSize16">{{goodsInfo.price}}</text><text class="color_aca text_through marginL5">￥{{goodsInfo.origin_price}}</text></view>
+          <view class="fontSize12 color_aca marginB5">库存{{goodsInfo.stock}}件</view>
+          <!-- <p class="fontSize12">已选择：50片/盒</p> -->
+        </view>
+      </view>
+      <view class="cb_num flex_row_left">
+          <view class="cb_n_title flex_grow1">购买数量</view>
+          <view class="cb_n_edit flex_row_center">
+              <text class="cb_n_minus flex_row_center" bindtap="changeNum" data-type="minus">
+                <text class="iconfont icon-minus fontSize12"></text>
+              </text>
+              <input class="input" type="text text_center" bindinput="updateValue" value='{{buyInfo.quantity}}'></input>
+              <text class="cb_n_plus flex_row_center" bindtap="changeNum" data-type="add">
+                <text class="iconfont icon-plus fontSize12"></text>
+              </text>
+          </view>
+      </view>
+      <view class="footer1 width100 flex_row_around">
+        <view class="fontSize16 fontBold color_white" bindtap="attrComputed" data-type="cart">加入购物车</view>
+        <view class="fontSize16 fontBold color_white" bindtap="attrComputed" data-type="buy">立即购买</view>
+      </view>
+    </view>
+</view>
+
+<view class="modals modals-bottom-dialog" hidden="{{hideModal1}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body cart_box bottom-pos paddingB2" animation="{{animationData}}">
+      <view class="top11 BB1 flex_row_between padding1">
+        <view class="left fontSize16 fontBold">
+          起送费：10元
+        </view>
+        <view class="right flex_row_left" bindtap="clearCart">
+          <image class="marginR1" src="../../image/doorShop/clearCart_icon.png" alt=""></image>
+          <view class="fontSize14 color_666">清空购物车</view>
+        </view>
+      </view>
+      <view class="shopDetail marginB1" style="max-height:600rpx;">
+        <view class="flex_row_left paddingT1 paddingB1 BB1" wx:for="{{dsStoreCart.product}}" wx:key="index">
+          <view class="left flex_row_center">
+            <image src="{{item.image}}" alt=""></image>
+          </view>
+          <view class="right">
+            <view class="fontSize16 fontBold text-overflow_1 goodsName marginB1">{{item.name}}</view>
+            <view class="flex_row_between">
+              <view>￥{{item.price}}</view>
+              <view class="flex_row_center marginR1">
+                  <image bindtap="changeNum" data-type="minus" data-item="{{item}}" class="addMinusIcon" src="../../image/doorShop/minus_icon.png" alt=""></image>
+                  <view class="fontSize16 marginL5 marginR5">{{item.quantity}}</view>
+                  <image bindtap="changeNum" data-type="add" data-item="{{item}}" class="addMinusIcon" src="../../image/doorShop/add_icon.png" alt=""></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="footer flex_row_left">
+        <view class="left posi_relative">
+          <image src="../../image/doorShop/shopCart_icon.png" alt=""></image>
+        </view>
+        <view class="center color_white fontSize16 marginL1">
+          共{{dsStoreCart.count}}件
+        </view>
+        <view class="right fonSize14 color_white flex_grow1 text_right">
+          <text class="fontSize18 fontBold marginR1">￥{{dsStoreCart.total_price}}</text>
+          <text class="submit fontBold fontSize16 color_ffa" bindtap="buy">去结算</text>
+        </view>
+      </view>
+    </view>
+</view>
+
+<!-- 弹出层 -->
+<view wx:if="{{showDialog}}" class="dialog-wrap">
+ <view class="padding1 fontSize16 fontBold">提示</view>
+ <view class="dialog width100 text_center">
+  请您先开启权限，才能下载图片
+  <view class="dialog-footer marginT1 flex_row_around">
+   <button
+    class="btn"
+    open-type="openSetting"
+    bindtap="confirm" >
+     授权
+   </button>
+   <button class="btn" bindtap="cancel">取消</button>
+  </view>
+ </view>
+</view>
+
+<!-- 遮罩层 -->
+<view class="mask" catchtap="preventTouchMove" wx:if="{{showModel || showModel1}}"></view>
+<!-- 弹出层 -->
+<view wx:if="{{showModel}}" class="dialogModel flex_col_center">
+  <view class="ui_img">
+    <image src="{{poster}}"></image>
+  </view>
+  <view class='ui_btn1 flex_row_center color_white'>
+      <view class="poster flex_row_center marginB1" bindtap="share">下载图片</view>
+  </view>
+</view>
+
+<view wx:if="{{showModel1}}" class="dialogModel1">
+  <view class="top">
+    <image class="vip_banner" src="{{projectInfo.cover}}" alt=""></image>
+  </view>
+  <view class="cont">
+    <view class="fontSize15 fontBold marginB1">{{projectInfo.name}}</view>
+    <view class="fontSize12 color_ff5 marginB1">定价￥ <text  class="fontSize18 fontBold">{{projectInfo.price}}</text></view>
+    <view class="fontSize11 color_666 text-overflow_2">{{projectInfo.introduction}}</view>
+  </view>
+  <view class="footer2 flex_row_right marginR1 marginT1">
+    <text bindtap="shareApp">分享</text>
+    <text class="marginL2" bindtap="goImmediately">立即预约</text>
+  </view>
+</view>

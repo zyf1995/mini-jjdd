@@ -1,0 +1,143 @@
+{
+  "pages": [
+    "pages/mall/mall",
+    "pages/doorShop/doorShop",
+    "pages/offlineStore/offlineStore",
+    "pages/home/home",
+    "pages/study/study",
+    "pages/my/my",
+    "pages/goodsInfo/goodsInfo",
+    "pages/orderConfirm/orderConfirm",
+    "pages/addressList/addressList",
+    "pages/addressAdd/addressAdd",
+    "pages/liveSearch/liveSearch",
+    "pages/shopCart/shopCart",
+    "pages/orderAnchor/orderAnchor",
+    "pages/orderList/orderList",
+    "pages/orderInfo/orderInfo",
+    "pages/dsShopDetail/dsShopDetail",
+    "pages/dsOrderConfirm/dsOrderConfirm",
+    "pages/wxShare/wxShare",
+    "pages/shopProfitDetail/shopProfitDetail",
+    "pages/shopArrive/shopArrive",
+    "pages/shopCenter/shopCenter",
+    "pages/shopTeamOrder/shopTeamOrder",
+    "pages/teamList/teamList",
+    "pages/applyHelp/applyHelp",
+    "pages/applyHelpSubmit/applyHelpSubmit",
+    "pages/bindAlipay/bindAlipay",
+    "pages/search/search",
+    "pages/withdraw/withdraw",
+    "pages/orderRefund/orderRefund",
+    "pages/orderRefundSubmit/orderRefundSubmit",
+    "pages/detail/detail",
+    "pages/lessonList/lessonList",
+    "pages/lessonDetail/lessonDetail",
+    "pages/applyLesson/applyLesson",
+    "pages/personMsgList/personMsgList",
+    "pages/addPersonMsg/addPersonMsg",
+    "pages/selectedLessonDate/selectedLessonDate",
+    "pages/buyLessonDetail/buyLessonDetail",
+    "pages/buyLessonList/buyLessonList",
+    "pages/dsDetail/dsDetail",
+    "pages/dsOrderInfo/dsOrderInfo",
+    "pages/immediatelyService/immediatelyService",
+    "pages/technicianList/technicianList",
+    "pages/immediatelySuccess/immediatelySuccess",
+    "pages/submintImmediately/submintImmediately",
+    "pages/userOrderList/userOrderList",
+    "pages/userOrderInfo/userOrderInfo",
+    "pages/fightOrderDetail/fightOrderDetail",
+    "pages/fightingOrder/fightingOrder",
+    "pages/fightingOrderList/fightingOrderList",
+    "pages/fightOrderRecord/fightOrderRecord",
+    "pages/fightOrderList/fightOrderList",
+    "pages/receiveProduct/receiveProduct",
+    "pages/shareApp/shareApp",
+    "pages/groupShopList/groupShopList",
+    "pages/groupShopDetail/groupShopDetail",
+    "pages/groupOrderConfirm/groupOrderConfirm",
+    "pages/groupOrderList/groupOrderList",
+    "pages/groupOrderInfo/groupOrderInfo",
+    "pages/friend/friend",
+    "pages/guideInfo/guideInfo",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/logs/logs",
+    "components/navbar/navbar"
+  ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "name": "packageA",
+      "pages": [
+        "pages/goodsList/goodsList",
+        "pages/goodsSearch/goodsSearch",
+        "pages/dsSearchList/dsSearchList",
+        "pages/searchList/searchList"
+      ],
+      "independent": false
+    }
+  ],
+  "preloadRule": {
+    "pages/mall/mall": {
+      "network": "all",
+      "packages": [
+        "packageA"
+      ]
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.2.3",
+      "provider": "wx2b03c6e691cd7370"
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#eb3300",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "俭单"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "selectedColor": "#eb3300",
+    "list": [
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "优选",
+        "iconPath": "./image/tab/shop.png",
+        "selectedIconPath": "./image/tab/shop_active.png"
+      },
+      {
+        "pagePath": "pages/lessonList/lessonList",
+        "text": "书院",
+        "iconPath": "./image/tab/live.png",
+        "selectedIconPath": "./image/tab/live_active.png"
+      },
+      {
+        "pagePath": "pages/doorShop/doorShop",
+        "text": "门店",
+        "iconPath": "./image/tab/mall.png",
+        "selectedIconPath": "./image/tab/mall_active.png"
+      },
+      {
+        "pagePath": "pages/friend/friend",
+        "text": "资讯",
+        "iconPath": "./image/tab/study.png",
+        "selectedIconPath": "./image/tab/study_active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "./image/tab/my.png",
+        "selectedIconPath": "./image/tab/my_active.png"
+      }
+    ]
+  }
+}

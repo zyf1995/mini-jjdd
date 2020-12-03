@@ -1,0 +1,184 @@
+/* pages/friend/friend.wxss */
+@import "../../iconfont.wxss";
+.friend_banner{
+  width: 100%;
+  height: 26vh;
+}
+.gs_tabs1{
+  width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0;
+  top:0;
+  z-index: 100;
+}
+.gs_tabs1 .gs_t_item {
+  height: 96rpx;
+  min-width: 50%;
+}
+.gs_tabs1 .gs_t_item text {
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 28rpx;
+  width: 80%;
+  color: #fff;
+}
+.gs_tabs1 .gs_t_item text.cur {
+  color: #FFBF41;
+}
+.gs_tabs1 .line {
+  position: absolute;
+  height: 4rpx;
+  width: 50%;
+  left: 0;
+  bottom: 10rpx;
+  transition: all 0.25s ease;
+}
+.gs_tabs1 .line text {
+  width: 70%;
+  height: 100%;
+  background: #FFBF41;
+}
+
+.a_item {
+  padding: 24rpx 48rpx;
+}
+.a_i_img {
+  position: relative;
+}
+.a_i_imgs view, .a_i_img.xc {
+  width: calc( 50vw - 60rpx );
+  height: calc( 83vw -  100rpx );
+  margin-right: 24rpx;
+  margin-bottom: 2.5vw;
+}
+/* #myCanvas{
+  width: calc( 50vw - 60rpx );
+  height: calc( 83vw -  100rpx );
+} */
+.a_i_imgs view:nth-child(2n+2) {
+  margin: 0 0 2.5vw;
+}
+.a_i_img image{
+object-fit: cover;
+}
+.f_z_btn {
+  width: 96rpx;
+  min-width: 108rpx;
+  height: 108rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  background: #666666;
+  color: #fff;
+  box-sizing: border-box;
+}
+.f_z_btn text {
+  width: 48rpx;
+  min-width: 48rpx;
+}
+.a_i_t_img {
+  min-width: 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.a_i_t_title {
+  max-width: 288rpx;
+}
+
+.a_i_btn {
+  padding: 4.8rpx 21.6rpx;
+  border-radius: 24rpx;
+}
+
+.a_i_btn.fx {
+  color: #DD1B2A;
+  background: #FFEDEB;
+}
+
+.a_i_cnt image, .a_i_comment image {
+  width: 36rpx;
+  height: 36rpx;
+  display: inline-block;
+}
+
+.a_i_img_price {
+  position: absolute;
+  bottom: 12rpx;
+  right: 12rpx;
+  min-width: 72rpx;
+  background: rgba(255, 0, 0, 0.5);
+  height: 36rpx;
+  line-height: 36rpx;
+  padding: 0 12rpx;
+  text-align: center;
+  border-top-right-radius: 24rpx;
+  border-bottom-left-radius: 24rpx;
+}
+
+.loadingGif{
+  width: 43.2rpx;
+  height: 43.2rpx;
+  margin-right: 14.4rpx;
+}
+
+
+
+#banner{
+  width: 100%;
+  height: 288rpx;
+}
+.gs_tabs .gs_t_item {
+  height: 96rpx;
+  min-width: 22%;
+}
+.gs_tabs .gs_t_item text {
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 28rpx;
+  width: 80%;
+}
+/* .gs_tabs{
+  overflow-x: scroll;
+} */
+.gs_tabs .line {
+  position: absolute;
+  height: 4rpx;
+  width: 22%;
+  left: 0;
+  bottom: 10rpx;
+  transition: all 0.25s ease;
+}
+
+.gs_tabs .line text {
+  width: 70%;
+  height: 100%;
+  background: #FFBF41;
+}
+
+.school_all view.p {
+  padding: 0 24rpx;
+}
+
+.sa_i_title {
+  width: 240rpx;
+  height:240rpx;
+  min-width: 240rpx;
+}
+.sa_i_content {
+  height: 240rpx;
+  justify-content: space-between;
+}
+.my-bullet {
+  background: #fff;
+}
+.swiper-pagination-bullet-active {
+  background: #FFBF41;
+}
+.bg_eb3{
+  background-color: #eb3300;
+}

@@ -1,0 +1,12 @@
+<!--pages/studyBuy/studyBuy.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="top">
+  <image src="{{vc_detail.image}}" alt=""></image>
+  <view class="quickly">{{vc_detail.title}}</view>
+  <view>
+    <text>￥</text>
+    {{filter.toFix(filter.toNum(vc_detail.price))}}
+  </view>
+</view>

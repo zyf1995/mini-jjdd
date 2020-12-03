@@ -1,0 +1,69 @@
+<!--pages/study/study.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view id="header_wrapper_50">
+  <view id='header' class='flex_row_left bg_white color_black'>
+    <view class="width100" bindtap="goSearch">
+      <input disabled="true" type="text" placeholder="输入关键词"></input>
+    </view>
+  </view>
+</view>
+<swiper
+id="banner"
+indicator-dots="true"
+autoplay="true"
+interval="2000"
+circular="true"
+indicator-color="#fff"
+indicator-active-color="#666874"
+class="bg_white paddingT5 paddingB1"
+>
+  <swiper-item wx:key="index" wx:for="{{vc_slide}}">
+    <image class="headset" src="{{item.avatar}}" />
+  </swiper-item>
+</swiper>
+<view class="menu flex_row_left padding1">
+  <view class="menuList flex_row_left flex_wrap width100">
+    <view class="flex_col_center li" wx:for="{{vc_type}}" wx:key="index">
+      <view class="fontSize12">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<view class="rankList">
+  <view class="top">
+    <view class="fontSize24">热门排行榜</view>
+  </view>
+  <view class="bottom">
+    <view class="li" bindtap="goMovie" data-id="{{item.id}}" wx:for="{{vc_hot}}" wx:key="index">
+      <image class="studyimg" src="{{item.image}}" alt=""></image>
+      <view class="cont">
+        <view class="text-overflow_1 cont1">{{item.title}}</view>
+        <view class="text-overflow_1 cont2">{{item.buy_num}}人已学</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="goodLesson">
+  <view class="top">
+    <view class="fontSize24">精选好课</view>
+  </view>
+  <view class="bottom flex_row_left">
+    <view class="goodLessonList flex_row_left flex_wrap width100">
+      <view class="li marginB1" bindtap="goMovie" data-id="{{item.id}}" wx:for="{{vc_hot}}" wx:key="index">
+        <view>
+          <image class="studyimg" src="{{item.image}}" alt=""></image>
+          <view class="text-overflow_1 cont1">{{item.title}}</view>
+          <view class="text-overflow_1 cont2">{{item.desc}}</view>
+          <view class="vip flex_row_left">
+            <!-- <image class="vipImg" src="../../image/vip.png" alt=""></image> -->
+            <view class="price1">￥{{filter.toFix(filter.toNum(item.price))}}</view>
+            <view class="price2 text_through">
+              ￥{{filter.toFix(filter.toNum(item.vip_price))}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

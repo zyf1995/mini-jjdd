@@ -1,0 +1,27 @@
+/* pages/shopProfitDetail/shopProfitDetail.wxss */
+.gs_tabs{
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0;
+  top: 0;
+  z-index: 120;
+}
+.gs_t_item {
+    height: 96rpx;
+    min-width: 50%;
+    /*color: #0*/
+}
+.gs_t_item text {
+    height: 72rpx;
+    line-height: 72rpx;
+    text-align: center;
+    font-size: 28rpx;
+    width: 80%;
+}
+.spd_sum {
+    padding: 48rpx 0;
+}
+.spd_sum img {
+    width: 48rpx;
+    height: 48rpx;
+}

@@ -1,0 +1,290 @@
+<!--pages/doorShop/doorShop.wxml-->
+<import src="../../toast/toast.wxml" />
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<image bindtap="goCart" wx:if="{{dataType == 0}}" class="backIcon marginR1" src="../../image/cart_icon.png" alt="">
+</image>
+<view class="tabTop" id='tabTop'>
+  <view class="flex_row_left marginB5 header">
+    <view class="heaImg flex_row_center" style="width: 20%;">
+      <image class="logo_circle" src="../../image/login_logo.png" alt=""></image>
+    </view>
+    <view class="h_search" bindtap="goSearch">
+      <text class="iconfont icon-search marginR10 marginL1"></text>
+      <input disabled="true" type="text" placeholder="输入关键词"></input>
+    </view>
+    <view style="width: 20%;" class="flex_row_center">
+      <view class="heaImg heaImgxi flex_col_center" bindtap="shareApp">
+        <image class="xiaoxi_icon" src="../../image/tool_share_icon.png" alt=""></image>
+      </view>
+    </view>
+  </view>
+  <view class="tabSwiper" id="headerUl">
+    <view class="flex_row_left fontSize14 ul">
+      <view class="flex_col_center li {{dataType == 0?'active':''}}" bindtap='tabS' data-index="0">
+        <view>线上门店</view>
+      </view>
+      <view class="flex_col_center li {{dataType == 1?'active':''}}" bindtap='tabS' data-index="1">
+        <view>附近门店</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{dataType == 0}}">
+  <swiper id="banner" indicator-dots="true" autoplay="true" interval="2000" circular="true" indicator-color="#fff"
+    indicator-active-color="#666874" class="paddingT5">
+    <swiper-item wx:key="index" wx:for="{{ds_IndexMerPic}}">
+      <image class="headset" src="{{item}}" />
+    </swiper-item>
+  </swiper>
+  <view class="flex_row_center paddingT2 jjdd_logo">
+    <image class="marginR1" src="../../image/jjdd_logo1.png" bindtap="toInfo" data-id="39" alt=""></image>
+    <image class="marginR1 marginL1" src="../../image/jjdd_logo2.png" bindtap="toInfo" data-id="40" alt=""></image>
+    <image class="marginR1 marginL1" src="../../image/jjdd_logo3.png" bindtap="toInfo" data-id="41" alt=""></image>
+    <image class="marginL1" src="../../image/jjdd_logo4.png" bindtap="toInfo" data-id="42" alt=""></image>
+  </view>
+  <view class="flex_row_left padding1 vipField">
+    <view class="fontSize16">VIP<text class="color_e3a">专场</text></view>
+  </view>
+  <view class="vipCont">
+    <image class="vip_bg" src="../../image/vip_bg.png" alt=""></image>
+    <!-- <view class="paddingL1 paddingR1 goodsSwiper2" style="height:{{goodsSwiperH}}">
+      <scroll-view scroll-x style="white-space: nowrap;"
+        class="margin_custom borderRadius1rem" id="goodsSwiper2">
+        <view class="hrth_item borderBox marginR5" style="width:32%;display:inline-block;" wx:key="index"
+          wx:for="{{vip_product}}" bindtap="toGoodsInfo">
+          <view class="color_white fontSize10 fontBold marginR5 goods_price">环保卫士
+          </view>
+          <view class="">
+            <view class="hrth_img squareImg posi_relative bg_white">
+              <image src="{{item.cover}}" alt=""></image>
+            </view>
+            <view class="hrth_item_Bt bg_white">
+              <view class="marginB5 fontSize13 text-overflow_2" style="white-space: pre-wrap;min-height: 70rpx;">{{item.name}}</view>
+            </view>
+            <view class="flex_row_center save">
+              <image class="save_icon marginR5" src="../../image/vip_icon1.png" alt=""></image>
+              <view class="fontSize10 color_ff0">￥<text
+                  class="fontSize14">{{item.price || 0}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view> -->
+    <view class="paddingL1 paddingR1 paddingB1" style="background: #353236;border-radius: 0 0 8px 8px;">
+      <view class="flex_row_left bg_white padding1 {{index != (vip_product.length - 1) ? 'marginB1': ''}}"
+        wx:for="{{vip_product}}" wx:key="index" bindtap="getshopDetail" data-item="{{item}}">
+        <image class="siftImg" src="{{item.cover}}" alt=""></image>
+        <view class="marginL1 marginR1 flex_col_right flex_grow1">
+          <view class="fontSize16 fontBold marginB5 text-overflow_11">{{item.name}}</view>
+          <view class="fontSize12 text_through text_gray marginB5">¥{{item.origin_price || 0}}</view>
+          <view class="fontSize18 flex_grow1 marginB5 color_ef4">¥{{item.price || 0}}</view>
+          <view class="goBuyRightNow fontSize14 color_white fontBold">立即购买</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="flex_row_left paddingL1 paddingR1 paddingT2 paddingB1 allGoods">
+    <view class="fontSize16">全部<text class="color_e3a">商品</text></view>
+  </view>
+  <view class="pro-container posi_relative" style="height:{{leftMenuH}}px;">
+    <scroll-view class="left-menu" scroll-y scroll-with-animation="true" scroll-top="{{leftMenuTop}}">
+      <view class="menu-item {{index===currentActiveIndex?'menu-active':''}}" wx:for="{{tabArraySub}}" wx:key="index"
+        id="{{index}}" catchtap='changeMenu'>{{item.category}}</view>
+    </scroll-view>
+    <scroll-view class="right-pro" bindscroll="scroll" scroll-y="{{isScroll}}" scroll-with-animation="true"
+      scroll-top="{{rightProTop}}">
+      <view class="pro-item" wx:for="{{dsProductList}}" wx:key="index">
+        <view class="top2">
+          <view class="hotShop padding1 fontSize14 fontBold width100">{{item.category.name}}</view>
+        </view>
+        <view wx:for="{{item.onSale}}" wx:for-item="lit" wx:for-index="i" wx:key="i"
+          class="flex_row_left posi_relative cont marginR1" bindtap="getshopDetail" data-item="{{lit}}">
+          <view class="left2 flex_row_center paddingT1 paddingB1">
+            <image class="productImg" src="{{lit.cover}}" alt=""></image>
+          </view>
+          <view class="right2">
+            <view class="fontSize14 fontBold marginB5 text-overflow_1">{{lit.name}}</view>
+            <view class="fontSize12 color_gray marginB5">
+            </view>
+            <view class="fontSize14">
+              <text class="color_red">￥{{lit.price}}</text>
+              <text class="color_gray text_through">￥{{lit.origin_price}}</text>
+            </view>
+          </view>
+          <view class="add" catchtap="addShop" data-item="{{lit}}">
+            <image class="addIcon" src="../../image/doorShop/managementType_icon3.png" alt=""></image>
+          </view>
+        </view>
+        <!-- 售罄 -->
+        <view class="top2 padding1 flex_row_between">
+          <view class="fontSize14 fontBold">已售罄</view>
+          <view class="fontSize12 flex_row_left">
+            <view>含{{item.saleOut.length}}个产品</view>
+            <view wx:if="{{item.saleOut.length > 0}}">
+              <!-- <image class="downIcon marginL5" v-show="isShow1" src="../../image/doorShop/up_icon.png" alt=""></image> -->
+              <image class="downIcon marginL5" src="../../image/doorShop/down_icon.png" alt=""></image>
+            </view>
+          </view>
+        </view>
+        <view class="flex_row_left posi_relative cont marginR1" wx:for="{{item.saleOut}}" wx:for-item="lit"
+          wx:for-index="i" wx:key="index" style="opacity:0.3;">
+          <view class="left2 padding1 posi_relative flex_row_center">
+            <image class="productImg" src="{{lit.cover}}" alt=""></image>
+            <image class="noSaleImg" src="../../image/doorShop/nosale_icon.png" alt=""></image>
+          </view>
+          <view class="right2">
+            <view class="fontSize14 fontBold marginB5 text-overflow_1">{{lit.name}}</view>
+            <view class="fontSize12 color_gray marginB5">
+            </view>
+            <view class="fontSize14">
+              <text class="color_red">￥{{lit.price}}</text>
+              <text class="color_gray text_through">￥{{lit.origin_price}}</text>
+            </view>
+          </view>
+          <view class="add">
+            <image class="addIcon" src="../../image/doorShop/managementType_icon3.png" alt=""></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+<view wx:if="{{dataType == 1}}">
+  <swiper id="banner" indicator-dots="true" autoplay="true" interval="2000" circular="true" indicator-color="#fff"
+    indicator-active-color="#666874" class="paddingT5 paddingB1">
+    <swiper-item wx:for="{{bannerList}}" wx:key="index">
+      <image class="headset" src="{{item}}" />
+    </swiper-item>
+  </swiper>
+  <view class="shopList padding1 bg_white flex marginB5 marginT1" wx:for="{{ds_stores}}" wx:key="index"
+    bindtap="goDsDetail" data-item="{{item}}">
+    <view class="left">
+      <image src="{{item.storefronts_image}}" alt=""></image>
+    </view>
+    <view class="right">
+      <view class="fontSize15 fontBold marginB1">{{item.name}}</view>
+      <view class="flex_row_left paddingB1 BB1">
+        <view class="marginR1 addAlliance bg_ffb text_center fontSize12" wx:if="{{item.type == '20'}}">加盟</view>
+        <view class="marginR1 addAlliance bg_ffb text_center fontSize12" wx:else>联盟</view>
+        <image class="map marginR5" src="../../image/map_yellow_icon.png" alt=""></image>
+        <view>距离<text> {{filter.toFix(filter.toNum(item.location))}} km </text></view>
+      </view>
+      <view class="flex_row_left marginT1 fontSize12">
+        <view class="adress text-overflow_1 color_666">{{item.address}}</view>
+        <view class="navigation color_white flex_row_center" catchtap="navigation" data-item="{{item}}">
+          <image class="navigation_icon marginR5" src="../../image/navigation_icon.png"></image>
+          <text>导航</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="marginT15 paddingB15 flex_row_center text_gray" wx:if='{{!toBottom}}'>
+    <image class="loadingGif" src="../../image/timg23.gif" alt=""></image>
+    <text class="fontSize14">加载中...</text>
+  </view>
+  <view class="marginT15 paddingB15 flex_row_center text_gray" wx:if='{{toBottom}}'>
+    <text class="iconfont icon-shangcheng marginR10 fontSize20"></text>
+    <text class="fontSize14">我是有底线的</text>
+  </view>
+</view>
+
+
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+  <view class="bottom-dialog-body cart_box bottom-pos" animation="{{animationData}}">
+    <view class="flex_row_left">
+      <image class="shopImg margin1rem paddingT1" src="{{goodsInfo.cover}}" alt=""></image>
+      <view class="right">
+        <view class="fontSize12 color_ff6 marginB5">￥<text class="fontSize16">{{goodsInfo.price}}</text><text
+            class="color_aca text_through marginL5">￥{{goodsInfo.origin_price}}</text></view>
+        <view class="fontSize12 color_aca marginB5">库存{{goodsInfo.stock}}件</view>
+        <!-- <p class="fontSize12">已选择：50片/盒</p> -->
+      </view>
+    </view>
+    <view class="cb_num flex_row_left">
+      <view class="cb_n_title flex_grow1">购买数量</view>
+      <view class="cb_n_edit flex_row_center">
+        <text class="cb_n_minus flex_row_center" bindtap="changeNum" data-type="minus">
+          <text class="iconfont icon-minus fontSize12"></text>
+        </text>
+        <input class="input" type="text text_center" bindinput="updateValue" value='{{buyInfo.quantity}}'></input>
+        <text class="cb_n_plus flex_row_center" bindtap="changeNum" data-type="add">
+          <text class="iconfont icon-plus fontSize12"></text>
+        </text>
+      </view>
+    </view>
+    <view class="footer1 width100 flex_row_around">
+      <view class="fontSize16 fontBold color_white" bindtap="attrComputed" data-type="cart">加入购物车</view>
+      <view class="fontSize16 fontBold color_white" bindtap="attrComputed" data-type="buy">立即购买</view>
+    </view>
+  </view>
+</view>
+<!-- 遮罩层 -->
+<!-- <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showDialog}}"></view> -->
+<!-- 弹出层 -->
+<view wx:if="{{showDialog}}" class="dialog-wrap">
+  <view class="padding1 fontSize16 fontBold">提示</view>
+  <view class="dialog width100 text_center">
+    请您先开启权限，才能下载图片
+    <view class="dialog-footer marginT1 flex_row_around">
+      <button class="btn" open-type="openSetting" bindtap="confirm">
+        授权
+      </button>
+      <button class="btn" bindtap="cancel">取消</button>
+    </view>
+  </view>
+</view>
+
+<!-- 遮罩层 -->
+<view class="mask" catchtap="preventTouchMove" wx:if="{{showModel}}"></view>
+<!-- 弹出层 -->
+<view wx:if="{{showModel}}" class="dialogModel flex_col_center">
+  <view class="ui_img">
+    <image src="{{poster}}"></image>
+  </view>
+  <view class='ui_btn1 flex_row_center color_white'>
+    <view class="poster flex_row_center marginB1" bindtap="share">下载图片</view>
+  </view>
+</view>
+
+
+<!-- 遮罩层 -->
+<view class="mask" catchtap="preventTouchMove" wx:if="{{showDialog1}}"></view>
+<!-- 弹出层 -->
+<view wx:if="{{showDialog1}}" class="dialog-wrap1">
+  <view class="fontSize14 paddingT2 marginB1 text_center">
+    <view>距离你最近的门店，是否前往</view>
+  </view>
+  <view class="dsList marginT1 fontSize14">
+    <view class="flex_row_left marginL1 paddingT1 paddingB1 BB1 marginR1" wx:for="{{dsNearstores}}" wx:key="index"
+      bindtap="goDsDetail" data-item="{{item}}">
+      <view class="marginR1">{{item.type}}</view>
+      <view>{{item.name}}</view>
+      <view class="flex_grow1 text_right">距您{{filter.toFix(filter.toNum(item.distance))}}km</view>
+    </view>
+  </view>
+  <view class="more text_center marginT1 marginB1" bindtap="moreDs">
+    <text class="fontSize18 color_f4">更多门店 ></text>
+  </view>
+</view>
+
+
+<!-- 遮罩层 -->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showDialog2}}"></view>
+<!-- 弹出层 -->
+<view wx:if="{{showDialog2}}" class="dialog-wrap">
+  <view class="padding1 fontSize16 fontBold">提示</view>
+  <view class="dialog width100 text_center padding1">
+    获取定位失败，请前往设置打开定位权限
+    <view class="dialog-footer marginT1 flex_row_around">
+      <button class="btn" open-type="openSetting" bindtap="confirm">
+        授权
+      </button>
+      <button class="btn" bindtap="cancel">取消</button>
+    </view>
+  </view>
+</view>

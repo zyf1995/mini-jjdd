@@ -1,0 +1,70 @@
+/* pages/userOrderList/userOrderList.wxss */
+.gs_tabs{
+  position: sticky;
+  position: -webkit-sticky;
+  left: 0;
+  top: 0;
+  z-index: 120;
+}
+.gs_t_item {
+    height: 96rpx;
+    min-width: 25%;
+}
+.gs_t_item text {
+    height: 72rpx;
+    line-height: 72rpx;
+    text-align: center;
+    font-size: 28rpx;
+    width: 80%;
+}
+.gs_t_item text.on {
+    border-bottom: 4rpx solid #fff;
+}
+
+.orderList .top .left image{
+  width: 132rpx;
+  height: 114rpx;
+}
+.orderList .top .left{
+  width: 24%;
+}
+.orderList .top .right{
+  width: 76%;
+}
+.orderList .top .right .introduce{
+  width: 80%;
+}
+.orderList .top .right .price .price1{
+  display: inline-block;
+  width: 44%;
+}
+.orderList .top .right .price image{
+  width: 24rpx;
+  height: 24rpx;
+}
+.orderList .bottom>view{
+  width: 50%;
+  color: #4F4F4F;
+}
+.orderList .bottom .right{
+  width: 50%;
+}
+.orderList .bottom .right view{
+  width:104rpx;
+  height:40rpx;
+  line-height: 40rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.3;
+  border-radius:24rpx 0px 0px 24rpx;
+}
+.orderList .status image{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.liveTimeIcon{
+  width: 24rpx;
+  height: 24rpx;
+}

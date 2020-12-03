@@ -1,0 +1,54 @@
+<!--pages/studyOnline/studyOnline.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view>
+    <video src="{{playUrl}}" autoplay="autoplay" binderror="videoErrorCallback" style="width:100%;height:500rpx;"></video>
+</view>
+<view class="flex_row_left fontSize14 posi_relative tab">
+  <view class="tab-item text_center {{navState==0?'nav-switch-style':''}}"  data-index="0" bindtap="navSwitch">课程大纲</view>
+  <view class="tab-item text_center {{navState==1?'nav-switch-style':''}}"  data-index="1" bindtap="navSwitch">课程详情</view>
+</view>
+<swiper bindchange="bindchange" current="{{navState}}" style="height:{{swiperH + 301}}px;">
+  <block>
+    <swiper-item>
+      <view class="style-roll">
+        <view id="study_online_frame1">
+          <view class="top">
+            <view class="fontSize14 fontBold">{{vc_detail.title}} （共{{videoNum}}节）</view>
+            <view class="fontSize12 paddingT1 paddingB1">{{vc_detail.outline}}</view>
+            <view class="flex_row_left flex_wrap" style="width:60vw;">
+              <view wx:for="{{vc_detail.label}}" wx:key="index" class="label marginR5 marginB5" wx:if="{{index < 4}}">{{item.name}}</view>
+            </view>
+            <view class="convert">
+              积分可兑换，分享省钱看
+            </view>
+          </view>
+          <view class="bottom">
+            <view class="bottomList">
+              <view class="li li{{vc_detail.id}} {{item.id == videoId?'on':''}}" wx:key="index" wx:for="{{vc_detail.videos}}" bindtap="playVideoAgain" data-item="{{item}}">
+                <image src="{{item.cover_image}}" alt=""></image>
+                <view class="play">
+
+                </view>
+                <view class="cont1 text-overflow_1">{{item.title}}</view>
+                <view class="cont2 text-overflow_2">{{item.desc}}</view>
+                <image wx:if="{{vc_detail.videos[index].is_try == 20 && vc_detail.purchase_info.is_buy == 0}}" class="lock" src="../../image/lock.png" alt=""></image>
+                <view wx:if="{{vc_detail.videos[index].is_try == 10 && vc_detail.purchase_info.is_buy == 0}}" class="trySee fontSize12">试看</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+
+    <swiper-item>
+      <view class="style-roll">
+        <text>左右可滑动2</text>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="footer flex_row_around width100 fontSize14">
+    <view class="studyCard" bindtap="goStudyCard">学习卡观看</view>
+    <view class="buy" bindtap="goBuy">购买观看</view>
+</view>

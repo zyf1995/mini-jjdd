@@ -1,0 +1,86 @@
+<!--pages/friend/friend.wxml-->
+<import src="../../toast/toast.wxml" />
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+<view class="gs_tabs1 flex_row_left bg_eb3 posi_relative">
+    <view class="line flex_row_center" style="left:{{left}}px">
+        <text></text>
+    </view>
+    <view class="gs_t_item flex_row_center" wx:for="{{tabArray}}" wx:key="index" bindtap='tabS' data-index="{{index}}">
+        <text class="{{currentIndex == index?'cur':''}}">{{item}}</text>
+    </view>
+</view>
+
+<view class="a_list" wx:if="{{currentIndex == 1}}">
+    <view class="a_item BB5 bg_white" wx:for="{{list}}" wx:key="index">
+        <view class="a_i_top flex_row_left marginB10">
+            <image class="a_i_t_img marginR5 borderRadius1rem" src="../../image/login_logo.png" alt=""></image>
+            <view class="flex_grow1">
+                <view class="a_i_t_title fontSize14 text-overflow_1 marginB5">小编推荐</view>
+                <view class="color_gray fontSize12">{{item.createtime_text}}</view>
+            </view>
+            <!-- <view class="a_i_btn fontSize10 bg_default color_white marginR5">
+                <text class="flex_row_center" bindtap='sharePanelS' data-item="{{item}}">
+                    <text class="iconfont icon-share marginR5"></text>
+                    <text>一键分享</text>
+                </text>
+            </view> -->
+        </view>
+        <view class="a_i_cnt fontSize14 marginB5">
+            <rich-text nodes="{{item.content}}"></rich-text>
+        </view>
+        <view class="a_i_imgs flex_row_left flex_wrap">
+            <view class="a_i_img" wx:for="{{poster[index].avatar}}" wx:key="index" wx:for-item="itemImg" wx:for-index="imgIndex"
+                bindtap='showPic' data-avatar="{{poster[index].avatar}}" data-index="{{imgIndex}}">
+                <image src="{{itemImg}}" alt=""></image>
+            </view>
+        </view>
+    </view>
+    <view class="marginT15 marginB15 flex_row_center text_gray" wx:if='{{!noMore}}'>
+        <image class="loadingGif" src="../../image/timg23.gif" alt=""></image>
+        <text class="fontSize14">加载中...</text>
+    </view>
+    <view class="marginT15 paddingB15 flex_row_center text_gray" wx:if='{{noMore}}'>
+        <text class="iconfont icon-shangcheng marginR10 fontSize20"></text>
+        <text class="fontSize14">我是有底线的</text>
+    </view>
+</view>
+
+
+<view wx:if="{{currentIndex == 0}}">
+    <swiper id="banner" indicator-dots="true" autoplay="true" interval="2000" circular="true" indicator-color="#fff"
+        indicator-active-color="#666874">
+        <swiper-item wx:key="index" wx:for="{{banner}}">
+            <image class="headset" src="{{item.image}}" />
+        </swiper-item>
+    </swiper>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="gs_tabs flex_row_left bg_white posi_relative">
+            <view class="line flex_row_center" id="subline" style="left:{{left1}}px">
+                <text></text>
+            </view>
+            <view class="gs_t_item flex_row_center fontBold fontSize14" wx:for="{{cateList}}" wx:key="index"
+                bindtap='tabS1' data-item="{{item}}" data-index="{{index}}">
+                <text class="{{cate_id == item.id?'color_f4':''}}">{{item.name}}</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="school_all">
+        <view class="sa_item padding1 flex_row_left bg_white BB1" wx:if='{{guideList.length > 0}}'
+            wx:for='{{guideList}}' wx:key="index" bindtap="toInfo" data-id="{{item.id}}">
+            <view class="sa_i_title bg_default marginR10 text-overflow_1 borderRadius1rem">
+                <image src="{{item.img_text ?item.img_text : '../../image/jjdd_logo.png' }}" alt=""></image>
+            </view>
+            <view class="sa_i_content flex_col_left flex_grow1">
+                <div class="marginB5 p text-overflow_2 fontSize16">{{item.name}}</div>
+                <div class="marginB5 p text-overflow_2 text_gray fontSize12">{{item.desc}}</div>
+                <div class="marginB5 p">{{filter.formatDate(item.createtime)}}</div>
+            </view>
+        </view>
+    </view>
+    <view class="marginT15 paddingB15 flex_row_center text_gray" wx:if='{{noMore1}}'>
+        <text class="iconfont icon-shangcheng marginR10 fontSize20"></text>
+        <text class="fontSize14">我是有底线的</text>
+    </view>
+</view>
+<canvas style="display: none;" type="2d" id="myCanvas"> </canvas>

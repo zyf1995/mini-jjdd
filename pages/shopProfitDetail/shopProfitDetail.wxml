@@ -1,0 +1,25 @@
+<!--pages/shopProfitDetail/shopProfitDetail.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view class="gs_tabs flex_row_left bg_default  posi_relative color_white">
+    <view class="gs_t_item flex_row_center" data-item="{{item}}" data-index="{{index}}" wx:key="index" wx:for="{{tabArray}}" bindtap='tabS'>
+        <text class="{{dataType == item.dataType?'color_f4':''}}">{{item.title}}</text>
+    </view>
+</view>
+<view class="spd_sum flex_col_center bg_default fontSize16 color_white">
+    <text class="marginB10 fontSize20">{{total || 0}}</text>
+    <view class="flex_row_left posi_relative">
+        <text class="marginR10">累计收益</text>
+    </view>
+</view>
+<view class="wr_list">
+    <view class="wr_item padding1 marginB10 bg_white flex_row_left" wx:for="{{list}}" wx:key="index">
+        <view class="flex_col_left  flex_grow1">
+            <text class="marginB10">备注：{{item.remark}}</text>
+            <text>时间：{{item.createtime_text}}</text>
+        </view>
+        <view class=" flex_col_left">
+            <text class="color_red fontSize14"> {{item.num}}</text>
+        </view>
+    </view>
+</view>

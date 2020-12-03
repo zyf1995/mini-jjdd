@@ -1,0 +1,52 @@
+<!--pages/liveSearch/liveSearch.wxml-->
+<view id="liveSearch">
+  <view id="header_wrapper_50">
+    <view id='header' class='flex_row_left bg_white color_black'>
+      <view class="width100">
+        <input type="text" placeholder="请输入关键词" bindinput="search"></input>
+      </view>
+    </view>
+  </view>
+  <view class="flex_row_left flex_wrap width100 marginT1">
+    <view class="liveItem marginB1" wx:for='{{searchList}}' wx:key="{{index}}">
+      <view class="cover posi_relative">
+        <image class="coverImg" src="{{item.room.cover}}" alt=""></image>
+        <view class="flex_row_left leftStatus">
+          <view class="liveStatus1 flex_row_left" wx:if="{{item.room.status == 2}}">
+            <image class="living_icon marginR5 marginL5" src="../../image/doorShop/living_icon.png" alt=""></image>
+            <text class="fontSize10 color_white">直播中</text>
+          </view>
+          <view class="liveStatus2" wx:if="{{item.room.status == 1}}">
+            <text class="fontSize10">预约</text>
+          </view>
+          <view wx:if="{{item.room.status == 2}}"><text class="fontSize10 color_white personNum">1100人观看</text></view>
+          <view wx:if="{{item.room.status == 1}}"><text class="fontSize10 color_white personNum">1100人想看</text></view>
+        </view>
+        <view class="attention flex_col_center">
+          <image class="live_guanzhu" src="../../image/doorShop/live_guanzhu.png" alt=""></image>
+          <view class="fontSize10 color_white marginT5">1999</view>
+        </view>
+        <view class="anchorMessage flex_row_left">
+          <image class="avatar_default marginR1" src="{{item.room.avatar?item.room.avatar:'../../image/avatar_default.png'}}" alt=""></image>
+          <view class="fontSize10 color_white">{{item.room.anchor_name}}</view>
+        </view>
+      </view>
+      <view class="liveList bg_white">
+        <view class="fontSize14 fontBold text-overflow_1 paddingT1 paddingL1 paddingR1">{{item.room.title}}</view>
+        <view class="flex_row_left width100 shopMessage">
+          <view class="left flex_row_center">
+            <image class="LiveProductImg marginT1 marginB1" src="{{item.goods[0].images?item.goods[0].images:''}}" alt=""></image>
+          </view>
+          <view class="right marginR1">
+            <view class="fontSize12 text-overflow_2">{{item.goods[0].goods_name}}</view>
+            <view class="fontSize12 color_ff3">￥{{item.goods[0].spec[0].goods_price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="flex_row_center padding1">
+    <text class="fontSize12 color_bcb">暂无更多内容</text>
+  </view>
+</view>
+

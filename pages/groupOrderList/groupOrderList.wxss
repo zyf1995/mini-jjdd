@@ -1,0 +1,8 @@
+/* pages/groupOrderList/groupOrderList.wxss */
+@import "../orderList/orderList.wxss";
+.gs_tabs1 .gs_t_item {
+  min-width: 33.3%;
+}
+.gs_tabs1 .line {
+  width: 33.3%;
+}

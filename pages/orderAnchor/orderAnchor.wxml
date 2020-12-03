@@ -1,0 +1,31 @@
+<!--pages/orderAnchor/orderAnchor.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view id="orderAnchor" style="background-image: url({{bgImg}})">
+  <view class="flex_col_center">
+    <image class="anchorAvator marginB2" src="{{room.avatar?room.avatar:'../../image/avatar_default.png'}}" alt=""></image>
+    <view class="fontSize16 fontBold color_white">{{room.anchor_name}}</view>
+  </view>
+  <view class="flex_col_center color_white liveTime">
+    <view class="fontSize18 fontBold marginB1" wx:if="{{room.status == 1}}">{{live_time}} 开播</view>
+    <view class="fontSize18 fontBold marginB1" wx:else>{{end_time}} 直播过</view>
+    <view class="countDown" wx:if="{{room.status == 1 && countDown}}">
+      <text class="red_border" id="RemainD">{{day}}</text> 天
+      <text id="RemainH">{{hou}}</text> 时
+      <text id="RemainM">{{min}}</text> 分
+      <text id="RemainS">{{sec}}</text> 秒
+    </view>
+  </view>
+  <view class="text_center fontSize14 non_arival marginB2" wx:if="{{room.status == 1}}">暂未开始直播，您可以进行预约</view>
+  <view class="text_center fontSize14 non_arival marginB2" wx:if="{{room.status == 0}}">直播已结束，逛逛其他直播间吧</view>
+  <view class="flex_row_center startLive" wx:if="{{isOrder && room.status == 1}}" bindtap="immediatelyOrder">
+    <text class="fontSize16 fontBold color_white">立即预约</text>
+  </view>
+  <view class="flex_row_center startLive1" wx:if="{{!isOrder && room.status == 1}}" bindtap="cancelOrder">
+    <text class="fontSize16 fontBold color_white">已预约</text>
+  </view>
+  <view class="flex_row_center liveWarm">
+    <text class="fontSize16 fontBold color_white" bindtap="goBack">逛逛其他直播间</text>
+  </view>
+</view>
+

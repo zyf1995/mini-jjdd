@@ -1,0 +1,83 @@
+/* pages/userOrderInfo/userOrderInfo.wxss */
+@import "../../iconfont.wxss";
+page{
+  padding-bottom: 85rpx;
+}
+.orderInfoIcon{
+  width: 24rpx;
+  height: 24rpx;
+}
+.cont .top .left image{
+  width: 132rpx;
+  height: 113rpx;
+}
+.cont .top .left{
+  width: 24%;
+}
+.cont .top .right{
+  width: 76%;
+}
+.cont .top .right .introduce{
+  width: 80%;
+}
+.cont .top .right .price .price1{
+  display: inline-block;
+  width: 44%;
+}
+.cont .top .right .price image{
+  width: 24rpx;
+  height: 24rpx;
+}
+.cont .bottom>view{
+  width: 50%;
+  color: #4F4F4F;
+}
+.cont .bottom .right{
+  width: 50%;
+}
+.cont .bottom .right view{
+  width:104rpx;
+  height:40rpx;
+  line-height: 40rpx;
+  background:rgba(0,0,0,1);
+  opacity:0.3;
+  border-radius:24rpx 0px 0px 24rpx;
+}
+.cont .status image{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.phoneIcon{
+  width: 34rpx;
+  height: 40rpx;
+}
+.cont4{
+  margin-bottom: 96rpx;
+}
+.cont4 .textarea{
+  height:151rpx;
+  outline: none;
+  background-color: #fff;
+}
+.footer{
+  width: 100%;
+  height: 85rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+}
+.footer text{
+  width:33.33%;
+  height:85rpx;
+  line-height: 85rpx;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  background:rgba(255,163,3,1);
+  box-shadow:0px 0px 30rpx 0px rgba(224,224,224,1);
+  position: absolute;
+  right: 0;
+}

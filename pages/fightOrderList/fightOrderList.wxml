@@ -1,0 +1,44 @@
+<!--pages/fightOrderList/fightOrderList.wxml-->
+<!-- <view class="allShop fontSize16 fontBold marginL1 marginT1 marginB1">拼赚专区</view>
+  <view wx:for="{{goodsList}}" wx:key="index" class="flex_row_left padding1 bg_white marginB10" bindtap="toGoodsInfo" data-id="{{item.id}}" data-goodsid="{{item.good_id}}">
+    <view class="hrg_img marginR10 skillB">
+        <image src="{{item.goods.image?item.goods.image:'../../image/goods_empty.png'}}" alt=""></image>
+    </view>
+    <view class="flex_grow1">
+        <view class="marginB5 fontSize15">{{item.goods.goods_name}}</view>
+        <view class="flex_row_center marginB5">
+            <text class="hrg_price marginR5 fontSize20 color_red">¥{{item.good_spec[0].goods_price}}</text>
+            <text class="hrg_original text_through flex_grow1 text_gray">¥{{item.good_spec[0].line_price}}</text>
+        </view>
+        <view class="fontSize12">{{item.goods.team_num || 0}}个团正在进行中.....</view>
+        <view class="hrg_tip color_white fontSize12 width100 marginT5">
+            <text class="tip_left">参与拼单</text>
+            <text class="tip_right ">发起拼单</text>
+        </view>
+    </view>
+  </view> -->
+  <view class="bg_white margin1rem prefecture padding1" wx:if="{{goodsList.length != 0}}">
+    <view class="fontBold fontSize20 marginB1 flex_row_left">
+      <view class="BL4 paddingL1">拼赚<span class="color_ff4">专区</span></view>
+    </view>
+    <view class="flex_row_left padding1 prefecture_item marginB5" wx:for="{{goodsList}}" wx:key="index" bindtap="toGoodsInfo" data-id="{{item.id}}" data-goodsid="{{item.good_id}}">
+      <view class="marginL1 marginR1">
+        <view class="fontSize16 fontBold marginB5 text-overflow_11">{{item.goods.goods_name}}</view>
+        <view class="fontSize12 text_through text_gray marginB5">¥{{item.good_spec[0].line_price}}</view>
+        <view class="fontSize18 flex_grow1 marginB5 color_ef4">¥{{item.good_spec[0].goods_price}}</view>
+        <view class="fontSize12 marginB5">{{item.goods.team_num || 0}}个团正在进行中.....</view>
+        <view class="hrg_tip color_white fontSize12 width100 marginT5">
+              <text class="tip_left">参与拼单</text>
+              <text class="tip_right ">发起拼单</text>
+          </view>
+      </view>
+      <view>
+        <image class="siftLogo" src="{{item.goods.image?item.goods.image:'../../image/goods_empty.png'}}" alt=""></image>
+      </view>
+    </view>
+  </view>
+  <image bindtap="goMyOrderList" class="user_order_list" src="../../image/doorShop/user_order_list.png"></image>
+  <view class="marginT15 paddingB15 flex_row_center text_gray">
+      <text class="iconfont icon-shangcheng marginR10 fontSize20"></text>
+      <text class="fontSize14">我是有底线的</text>
+  </view>

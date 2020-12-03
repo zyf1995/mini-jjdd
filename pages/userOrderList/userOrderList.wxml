@@ -1,0 +1,39 @@
+<!--pages/userOrderList/userOrderList.wxml-->
+<view class="gs_tabs flex_row_left bg_white  posi_relative marginB10">
+    <view class="gs_t_item flex_row_center" data-item="{{item}}" data-index="{{index}}" wx:key="index" wx:for="{{tabArray}}" bindtap='tabS'>
+        <text class="{{dataType == item.dataType?'color_f4':''}}">{{item.title}}</text>
+    </view>
+</view>
+<view class="orderList">
+  <view class="margin1rem bg_white posi_relative" wx:if="{{item.order_status != 40}}" bindtap="goOrderDetail" data-item="{{item}}" wx:for="{{orderList}}" wx:key="index" >
+    <view class="top flex_row_left BB1 marginL1">
+        <view class="left marginB1 marginT1">
+          <image src="{{item.cover}}" alt=""></image>
+        </view>
+        <view class="right">
+          <view class="marginB5 fontSize14 fontBold">{{item.name}}</view>
+          <view class="introduce text-overflow_1 marginB5 fontSize11 color_gray">{{item.introduction}}</view>
+          <view class="fontSize12 price flex_row_left">
+            <text class="color_ff5 price1">￥<text class="fontSize18">{{item.price}}</text></text>
+            <image class="marginR5" src="../../image/doorShop/subscribe_time_icon.png" alt=""></image>
+            <text class="color_ffb">开始于：{{item.order_date}} {{item.arrive_time}}</text>
+          </view>
+        </view>
+      </view>
+    <view class="bottom flex_row_left paddingT1 paddingB1">
+      <view class="marginL1 fontSize12">订单编号：{{item.order_num}}</view>
+      <view class="right flex_row_right">
+        <view class="text_right color_white fontSize12">{{item.category_name}}</view>
+      </view>
+    </view>
+    <view class="status">
+      <image wx:if="{{item.order_status == 10}}" src="../../image/doorShop/status_nostart_icon.png" alt=""></image>
+      <image wx:if="{{item.order_status == 20}}" src="../../image/doorShop/status_end_icon.png" alt=""></image>
+      <image wx:if="{{item.order_status == 30}}" src="../../image/doorShop/status_cancel_icon.png" alt=""></image>
+    </view>
+  </view>
+</view>
+<view class="marginT15 marginB15 flex_row_center text_gray">
+    <text class="iconfont icon-shangcheng marginR10 fontSize20"></text>
+    <text class="fontSize14">我是有底线的</text>
+</view>

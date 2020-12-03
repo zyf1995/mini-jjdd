@@ -1,0 +1,71 @@
+<!--pages/submintImmediately/submintImmediately.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view class="cont1 marginB1">
+  <view class="flex_row_left padding1 marginT5 marginB5">
+    <image class="orderInfoIcon marginR1 marginL1" src="../../image/doorShop/orderInfo_icon2.png" alt=""></image>
+    <text class="color_9b9 fontSize12">门店信息</text>
+  </view>
+  <view class="marginL1 marginR1">
+    <view class="flex_row_between fontSize14 marginB5">
+      <text class="marginL2">{{serverOrder.shops.name}}</text>
+    </view>
+    <view class="marginL2 fontSize10 color_4f">{{serverOrder.shops.detail}}</view>
+  </view>
+</view>
+<view class="cont2 marginB1">
+  <view class="flex_row_left padding1 marginT5 marginB5">
+    <image class="orderInfoIcon marginR1 marginL1" src="../../image/doorShop/orderInfo_icon2.png" alt=""></image>
+    <text class="color_9b9 fontSize12">服务项目</text>
+  </view>
+  <view class="marginL1 marginR1">
+    <view class="flex_row_between fontSize14 marginB5">
+      <text class="marginL2">{{serverOrder.goods.p_name}}</text>
+      <text class="color_ffb marginR1">￥{{serverOrder.goods.price}}</text>
+    </view>
+    <view class="marginL2 fontSize10 color_4f">{{technician_name}}（{{technician_position}}）</view>
+  </view>
+</view>
+<view class="cont3 marginB1">
+  <view class="flex_row_left padding1 marginT5 marginB5">
+    <image class="orderInfoIcon marginR1 marginL1" src="../../image/doorShop/orderInfo_icon3.png" alt=""></image>
+    <text class="color_9b9 fontSize12">预约信息</text>
+  </view>
+  <view class="marginL1 marginR1">
+    <view class="fontSize14 marginB5 marginL2">{{dateInfo.day + ' ' + dateInfo.week + ' ' + dateInfo.time}}</view>
+  </view>
+</view>
+<view class="cont4 marginB1" bindtap="updatePersonMsg">
+  <view class="flex_row_left padding1 marginT5 marginB5">
+    <image class="orderInfoIcon marginR1 marginL1" src="../../image/doorShop/orderInfo_icon4.png" alt=""></image>
+    <text class="color_9b9 fontSize12">预约人</text>
+  </view>
+  <view class="marginL1 marginR1 bg_white">
+    <view class="padding1 flex_row_between fontSize14 BB1">
+      <text class="color_9b9">预约人</text>
+      <text>{{lessonMember.name}}</text>
+    </view>
+    <view class="padding1 flex_row_between fontSize14">
+      <text class="color_9b9">手机号</text>
+      <view class="flex_row_left fontSize14">
+        <view class="marginR1">{{lessonMember.phone}}</view>
+        <view class="color_9b9 marginR1">|</view>
+        <image class="phoneIcon" catchtap="call" src="../../image/doorShop/orderInfo_icon6.png" alt=""></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cont5">
+  <view class="flex_row_left padding1 marginT5 marginB5">
+    <image class="orderInfoIcon marginR1 marginL1" src="../../image/doorShop/orderInfo_icon5.png" alt=""></image>
+    <text class="color_9b9 fontSize12">留言</text>
+  </view>
+  <view class="marginL1 marginR1 bg_white">
+    <textarea class="width100 border_none" bindinput="updateValue" value="{{remarks}}" name="name"></textarea>
+  </view>
+</view>
+
+<view class="footer flex_row_left fontSize14 posi_relative">
+  <view class="marginL2">{{dateInfo.day + ' ' + dateInfo.week + ' ' + dateInfo.time}}</view>
+  <text bindtap="submit">提交预约</text>
+</view>

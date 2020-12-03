@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "header":"../../components/navbar/navbar"
+  },
+  "navigationBarTitleText": "正在拼单",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
+}

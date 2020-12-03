@@ -1,0 +1,31 @@
+<!--pages/immediatelySuccess/immediatelySuccess.wxml-->
+<view class='nav' style='height:{{navigationBarHeight}}'>
+    <view class='title_icon flex_row_center' bindtap="myCenterPage">
+   　　<text class="iconfont icon-left-arrow color_white fontSize18"></text>
+   </view>
+   <view class='title_text'>预约成功</view>
+</view>
+<view class="successBg">
+  <image src="../../image/doorShop/success_bg.png" alt=""></image>
+</view>
+<view class="success_item flex_row_between padding1 fontSize12 color_4f">
+  <text class="marginL2">预约人：{{lessonMember.name}}</text>
+  <text>{{lessonMember.phone}}</text>
+</view>
+<view class="success_item flex_row_between padding1 fontSize12 color_4f">
+  <text class="marginL2">门店名称：{{serverOrder.shops.name}}</text>
+</view>
+<view class="success_item success_item1 BB1 flex fontSize12 color_4f">
+  <image class="map_gray_icon" src="../../image/doorShop/map_gray_icon.png" alt=""></image>
+  <text>门店地址：{{serverOrder.shops.detail}}</text>
+</view>
+<view class="success_item padding1 flex_row_between fontSize12 color_4f">
+  <text class="color_9a9">订单编号：{{order_num}}</text>
+  <text class="copy" bindtap="copy" data-text="{{order_num}}">复制</text>
+</view>
+<view class="success_item padding1 flex_row_between fontSize12 color_4f">
+  <text class="color_9a9">服务时间：{{dateInfo.day}} {{dateInfo.time}}</text>
+</view>
+<view class="orderDetail flex_row_center color_white fontBold fontSize16" bindtap="goOrderDetail">
+  <text>查看订单详情</text>
+</view>

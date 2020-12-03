@@ -1,0 +1,109 @@
+#header input{
+  width: calc(90% - 64rpx);
+  margin-left: 5%;
+  height: 60rpx;
+  background:rgba(238,238,238,1);
+  border-radius:32rpx;
+  background-image: url("https://testhdt.teadrf.cn/wxbackground/search_icon.png");
+  background-repeat: no-repeat;
+  background-size: 32rpx 32rpx;
+  background-position:24rpx center;
+  /* text-indent: 64rpx; */
+  padding-left: 64rpx;
+}
+
+.liveItem{
+  width: 50%;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.cover{
+  width:48vw;
+  height:327rpx;
+  margin-left: 1vw;
+}
+.liveList{
+  width: 48vw;
+  margin-left: 1vw;
+}
+.cover .coverImg{
+  width:100%;
+  height:100%;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.leftStatus{
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+}
+.personNum{
+  display: inline-block;
+  background-color: rgba(0,0,0,0.6);
+  width:142rpx;
+  height:28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  margin-left: -12rpx;
+  border-radius:0 16rpx 16rpx 0;
+}
+.liveStatus1{
+  width:104rpx;
+  height:32rpx;
+  line-height: 32rpx;
+  z-index: 100;
+  background-image: url(../../image/doorShop/livestatus_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.liveStatus2{
+  width:66rpx;
+  height:32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  z-index: 100;
+  background-color: #fff;
+  color: #FF6407;
+  border-radius:16rpx;
+}
+.liveStatus3{
+  width:104rpx;
+  height:32rpx;
+  line-height: 32rpx;
+  z-index: 100;
+  background-color: #6d7c91;
+  border-radius:16rpxx;
+}
+.living_icon{
+  width: 15rpx;
+  height: 15rpx;
+}
+.attention{
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+}
+.attention .live_guanzhu{
+  width: 24rpx;
+  height: 24rpx;
+}
+.anchorMessage{
+  position: absolute;
+  left: 12rpx;
+  bottom: 24rpx;
+}
+.anchorMessage .avatar_default{
+  width:48rpx;
+  height:48rpx;
+  border-radius:50%
+}
+
+.liveList .shopMessage .left{
+  width: 38%;
+}
+.liveList .shopMessage .right{
+  width: 62%;
+}
+.LiveProductImg{
+  width:85rpx;
+  height:85rpx;
+  border-radius:10rpx;
+}
